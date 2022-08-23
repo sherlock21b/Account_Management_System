@@ -14,8 +14,8 @@ public class Transactions_dao {
 	@Autowired
 	Transactions_repo repo;
 
-	public List<Transactions> showTransactions(){
-		return repo.showTransactions();
+	public List<Transactions> showTransactions(int acc){
+		return repo.showTransactions(acc);
 	}
 	
 	public List<Transactions> get_statement(LocalDate date1,LocalDate date2,int acc){
