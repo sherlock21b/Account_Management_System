@@ -16,9 +16,9 @@ public class Transactions_Controller {
 	Transactions_service service;
 	
 	@GetMapping("/latest-transactions")
-	public List<Transactions> showTransactions(){
+	public List<Transactions> showTransactions(@RequestParam("acc") int acc){
 		System.out.println("DOneee");
-		return service.showTransactions();
+		return service.showTransactions(acc);
 	}
 	
 	@GetMapping("/get-statement")
