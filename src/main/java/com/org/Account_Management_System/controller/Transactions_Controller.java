@@ -34,8 +34,17 @@ public class Transactions_Controller {
 	}
 	
 	 @PostMapping("/amounttransfer")
-	    public account_transaction transfer_amount(@RequestBody account_transaction ba) {
-	    	return service.transfer_amount(ba);
+	    public account_transaction transfer_amount(@RequestBody account_transaction ba) 
+	 {
+	    try
+	    {
+		 return service.transfer_amount(ba);
 	    }
+	    catch(Exception e)
+	    {
+	    	System.out.println("Transfer Amount Not Valid");
+	    	return null;
+	    }
+	 }
 
 }

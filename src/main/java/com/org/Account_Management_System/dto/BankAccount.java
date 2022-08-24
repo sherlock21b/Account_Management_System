@@ -6,15 +6,15 @@ import javax.persistence.Id;
 @Entity
 public class BankAccount {
 	@Id
-	private Long account_number;
+	private long account_number;
 	private int customer_id;
 	private double current_bal;
 	private String account_type;
 	
-	public Long getAccount_number() {
+	public long getAccount_number() {
 		return account_number;
 	}
-	public void setAccount_number(Long account_number) {
+	public void setAccount_number(long account_number) {
 		this.account_number = account_number;
 	}
 	public int getCustomer_id() {
