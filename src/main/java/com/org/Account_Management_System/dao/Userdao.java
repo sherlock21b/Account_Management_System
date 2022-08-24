@@ -13,4 +13,8 @@ public class Userdao {
 	public User saveUser(User user) {
 		return repo.save(user);
 	}
+	public User updatePassword(User user) {
+		return repo.save(user);
+	}
+	
 }

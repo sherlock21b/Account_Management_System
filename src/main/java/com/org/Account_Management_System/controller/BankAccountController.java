@@ -18,7 +18,7 @@ public class BankAccountController {
 		@PostMapping("/account-type")
 		public BankAccount saveBankAccount(@RequestBody BankAccount account) {
 			String lUUID = String.format("%06d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)).substring(0,9);
-			account.setAccount_number(Integer.parseInt(lUUID));
+			account.setAccount_number(Long.parseLong(lUUID));
 			return account_service.saveAccount(account);
 		}
 }

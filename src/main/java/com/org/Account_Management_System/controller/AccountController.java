@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.org.Account_Management_System.BCrypt;
 import com.org.Account_Management_System.RandomString;
-import com.org.Account_Management_System.dto.BankAccount;
 import com.org.Account_Management_System.dto.Customer;
 import com.org.Account_Management_System.dto.User;
-import com.org.Account_Management_System.service.BankAccountService;
 import com.org.Account_Management_System.service.CustomerCreationServices;
 import com.org.Account_Management_System.service.UserServices;
 

@@ -1,8 +1,6 @@
-package com.org.Account_Management_System;
+package com.org.Account_Management_System.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

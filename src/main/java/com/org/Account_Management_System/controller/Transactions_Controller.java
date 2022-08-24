@@ -1,7 +1,6 @@
-package com.org.Account_Management_System;
+package com.org.Account_Management_System.controller;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -10,6 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.org.Account_Management_System.dto.Transactions;
+import com.org.Account_Management_System.service.Transactions_service;
+
+
 @RestController
 public class Transactions_Controller {
 	@Autowired
@@ -17,7 +20,6 @@ public class Transactions_Controller {
 	
 	@GetMapping("/latest-transactions")
 	public List<Transactions> showTransactions(@RequestParam("acc") int acc){
-		System.out.println("DOneee");
 		return service.showTransactions(acc);
 	}
 	
