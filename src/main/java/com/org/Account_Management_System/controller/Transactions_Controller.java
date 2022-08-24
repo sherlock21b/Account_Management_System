@@ -1,8 +1,11 @@
 package com.org.Account_Management_System.controller;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +36,13 @@ public class Transactions_Controller {
 		return service.get_statement(d1, d2, acc);
 	}
 	
-	 @PostMapping("/amounttransfer")
+	 @PostMapping("/account-transfer")
 	    public account_transaction transfer_amount(@RequestBody account_transaction ba) {
+		 	ba.setType("Debit");
+		 	ba.setTime(LocalDateTime.now());
+		 	ba.setSub_type("Transfer");
+		 	String lUUID = String.format("%06d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)).substring(0,5);
+			ba.setTransaction_id(Integer.parseInt(lUUID));
 	    	return service.transfer_amount(ba);
 	    }
 
