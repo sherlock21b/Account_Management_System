@@ -49,13 +49,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-<<<<<<< HEAD
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
-=======
-            		<groupId>org.springframework.boot</groupId>
-            		<artifactId>spring-boot-starter-mail</artifactId>
->>>>>>> b215756438cbe14495578a68a672f454002396d1
 		</dependency>
 	</dependencies>
 
