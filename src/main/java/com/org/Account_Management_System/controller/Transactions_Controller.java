@@ -1,4 +1,4 @@
-package com.org.Account_Management_System.Controller;
+package com.org.Account_Management_System.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
