@@ -1,4 +1,4 @@
-package com.org.Account_Management_System.controller;
+package com.org.Account_Management_System.Controller;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -36,14 +36,23 @@ public class Transactions_Controller {
 		return service.get_statement(d1, d2, acc);
 	}
 	
+
 	 @PostMapping("/account-transfer")
 	    public account_transaction transfer_amount(@RequestBody account_transaction ba) {
+	    try
+	    {
 		 	ba.setType("Debit");
 		 	ba.setTime(LocalDateTime.now());
 		 	ba.setSub_type("Transfer");
 		 	String lUUID = String.format("%06d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)).substring(0,5);
 			ba.setTransaction_id(Integer.parseInt(lUUID));
-	    	return service.transfer_amount(ba);
+			return service.transfer_amount(ba);
 	    }
+	    	catch(Exception e)
+		    {
+		    	System.out.println("Transfer Amount Not Valid");
+		    	return null;
+		    }
+	 }
 
 }
