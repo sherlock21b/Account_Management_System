@@ -26,7 +26,7 @@ public class BankAccount {
 	public double getCurrent_bal() {
 		return current_bal;
 	}
-	public void setCurrent_bal(int current_bal) {
+	public void setCurrent_bal(double current_bal) {
 		this.current_bal = current_bal;
 	}
 	public String getAccount_type() {

@@ -23,6 +23,9 @@ public class CustomerDao {
 		 customer.setCustomer(Integer.parseInt(lUUID));
 		 return repo.save(customer);
 	 }
+	 public String findEmail(int acc) {
+		 return repo.findEmail(acc);
+	 }
 
 }
 

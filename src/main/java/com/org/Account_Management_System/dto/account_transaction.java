@@ -15,7 +15,13 @@ public class account_transaction  {
 	private long to_account;
 	private double amount;
 	private String sub_type;
-	private String type="Credit";
+	private String type;
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	private int account_number;
 	
 	LocalDateTime time = LocalDateTime.now();

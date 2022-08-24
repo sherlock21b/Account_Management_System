@@ -16,6 +16,9 @@ public class CustomerCreationServices {
 	public Customer saveCustomer(Customer customer) {
 		return dao.saveCustomer(customer);
 	}
+	public String findEmail(int acc) {
+		return dao.findEmail(acc);
+	}
 
 }
 
