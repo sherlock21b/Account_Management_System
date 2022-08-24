@@ -23,6 +23,8 @@ public class Transactions_service {
 	public account_transaction transfer_amount(account_transaction ba) {
 		   return dao.transfer_amount(ba);
 	   }
-
+	public account_transaction save_transactions(account_transaction tran) {
+        return dao.save_transactions(tran);
+    }
 
 }

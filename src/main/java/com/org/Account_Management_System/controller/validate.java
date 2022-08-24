@@ -1,4 +1,4 @@
-package com.org.Account_Management_System.Controller;
+package com.org.Account_Management_System.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

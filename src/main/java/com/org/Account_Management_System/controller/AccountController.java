@@ -1,4 +1,4 @@
-package com.org.Account_Management_System.Controller;
+package com.org.Account_Management_System.controller;
 
 import java.math.BigInteger;
 import java.util.UUID;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.org.Account_Management_System.BCrypt;
+import com.org.Account_Management_System.Mail_Controller;
+import com.org.Account_Management_System.Mail_dto;
 import com.org.Account_Management_System.RandomString;
 import com.org.Account_Management_System.dto.Customer;
 import com.org.Account_Management_System.dto.User;
@@ -22,6 +24,9 @@ import com.org.Account_Management_System.service.UserServices;
 public class AccountController {
 	@Autowired
 	CustomerCreationServices service;
+	
+	@Autowired
+	Mail_Controller mail;
 	
 	@Autowired
 	UserServices user_service;
@@ -42,9 +47,11 @@ public class AccountController {
 		 user.setPassword(generatedSecuredPasswordHash);
 		 user.setRole_id(2);
 		 user_service.saveUser(user);
-		 //mail(customer.email_id,customer.getCustomer_id()+""+originalPassword)
-//			boolean matched = BCrypt.checkpw(originalPassword, generatedSecuredPasswordHash);
-//			System.out.println(matched);
+		 Mail_dto mailObject=new Mail_dto();
+		 mailObject.setReciepent(customer.getEmail_id());
+		 mailObject.setSub("Welcome to the Bank");
+		 mailObject.setMsg("Here are the creditianls\n"+"Login Id: "+ customer.getCustomer_id()+"\n"+"Temp Password: "+ originalPassword);
+		 mail.sendSimpleEmail(mailObject);
 		 return service.saveCustomer(customer);
 	}
 

@@ -17,4 +17,11 @@ public interface Transactions_repo extends JpaRepository<account_transaction, In
 	
 	@Query(value="SELECT * FROM account_transaction b WHERE b.time BETWEEN ? AND ? AND account_number=?",nativeQuery = true)
 	List<account_transaction> get_statement(LocalDate date1,LocalDate date2,int acc);
+	
+	@Query(value="SELECT  SUM(amount) FROM account_transaction acc WHERE acc.time >= NOW() - INTERVAL 1 DAY and acc.account_number=? and acc.type=? and sub_type=?",nativeQuery = true)
+    Double check_10k(Long long1, String type, String sub_type);
+	
+	@Query(value="select current_bal from bank_account where account_number=?",nativeQuery=true)
+    Double presence(Long long1);
+
 }

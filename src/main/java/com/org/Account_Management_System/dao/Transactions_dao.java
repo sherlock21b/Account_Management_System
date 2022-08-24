@@ -16,6 +16,7 @@ public class Transactions_dao {
 	@Autowired
 	Transactions_repo repo;
 
+
 	public List<account_transaction> showTransactions(int acc){
 		return repo.showTransactions(acc);
 	}
@@ -26,4 +27,16 @@ public class Transactions_dao {
 	public account_transaction transfer_amount(account_transaction ba) {
 	  	return repo.save(ba);
   }
+	public account_transaction save_transactions(account_transaction tran) {
+      Double check=repo.check_10k(tran.getAccount_number(),"Debit", "Cash");
+      if(check==null||check<10000) {
+          return repo.save(tran);
+      }
+      else {
+          return null;
+      }
+
+  }
+
+
 }
