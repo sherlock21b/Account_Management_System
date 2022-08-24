@@ -8,5 +8,5 @@ import com.org.Account_Management_System.dto.BankAccount;
 public interface AccountRepo extends JpaRepository<BankAccount, Integer>{
 
 
-	
+
 }

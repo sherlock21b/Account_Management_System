@@ -80,13 +80,6 @@ public class Transactions_Controller {
 		 	tran.setTime(LocalDateTime.now());
 		 	tran.setSub_type("Cash");
 	        tran.setTransaction_id(Integer.parseInt(lUUID));
-	        String email=repo.findEmailByAccountNumber(tran.getAccount_number());
-			Mail_dto mailObject=new Mail_dto();
-			 mailObject.setReciepent(email);
-			 mailObject.setSub("Cash Transaction Info ");
-			 mailObject.setMsg("Here are the Cash Transaction Detials for Account Number: "+ tran.getAccount_number()+" of Amount "+tran.getAmount()+ " is "+tran.getType() +" with the tansaction id as :"+ tran.getTransaction_id());
-			 mail.sendSimpleEmail(mailObject);
-
 	        return service.save_transactions(tran);
 		} catch(Exception e) {
 			System.out.println(e);

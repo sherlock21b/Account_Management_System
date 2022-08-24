@@ -4,11 +4,15 @@ import java.math.BigInteger;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.org.Account_Management_System.BCrypt;
 import com.org.Account_Management_System.Mail_Controller;
@@ -18,7 +22,7 @@ import com.org.Account_Management_System.dto.Customer;
 import com.org.Account_Management_System.dto.User;
 import com.org.Account_Management_System.service.CustomerCreationServices;
 import com.org.Account_Management_System.service.UserServices;
-
+import java.io.File;
 
 @RestController
 public class AccountController {
@@ -38,6 +42,7 @@ public class AccountController {
 	 }
 	 @PostMapping("/account-details")
 	 public Customer saveCustomer(@RequestBody Customer customer) {
+		 //move to service
 		 String lUUID = String.format("%06d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)).substring(0,6);
 		 customer.setCustomer(Integer.parseInt(lUUID));
 		 String  originalPassword = RandomString.getRandomString(8);
@@ -52,8 +57,22 @@ public class AccountController {
 		 mailObject.setSub("Welcome to the Bank");
 		 mailObject.setMsg("Here are the creditianls\n"+"Login Id: "+ customer.getCustomer_id()+"\n"+"Temp Password: "+ originalPassword);
 		 mail.sendSimpleEmail(mailObject);
+		 //till here
 		 return service.saveCustomer(customer);
 	}
+	  @PostMapping("/upload") 
+	  public ResponseEntity<?> handleFileUpload( @RequestParam("file") MultipartFile file ) {
 
+	    String fileName = file.getOriginalFilename();
+	    System.out.println(fileName);
+	    try {
+	      file.transferTo( new File("C:\\upload\\" + fileName));
+	    } catch (Exception e) {
+	    	System.out.println(e);
+	      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    } 
+	    System.out.println(fileName);
+	    return ResponseEntity.ok("File uploaded successfully.");
+	  }
 
 }
