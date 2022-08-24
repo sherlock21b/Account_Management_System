@@ -12,18 +12,15 @@ public class validate {
 	@Autowired
 	validate_service service;
 	
-	@GetMapping("/validateaccount/{account_number}")
+	@GetMapping("/validate-account/{account_number}")
     public String transfer_amount(@PathVariable long account_number ) {
 
         BankAccount ba=null;
         ba=service.validate(account_number);
-
         if(ba==null){
-
             return "Not found";
         }
         else {
-       
             return "Account is Present";
         }
     }
