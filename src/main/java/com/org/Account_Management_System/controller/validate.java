@@ -13,18 +13,18 @@ public class validate {
 	validate_service service;
 	
 	@GetMapping("/validateaccount/{account_number}")
-    public BankAccount transfer_amount(@PathVariable long account_number ) {
+    public String transfer_amount(@PathVariable long account_number ) {
 
         BankAccount ba=null;
         ba=service.validate(account_number);
 
         if(ba==null){
-            System.out.println("**Not Available");
-            return null;
+
+            return "Not found";
         }
         else {
-            System.out.println("**Available**");
-            return ba;
+       
+            return "Account is Present";
         }
     }
 }

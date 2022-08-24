@@ -1,4 +1,4 @@
-package com.org.Account_Management_System.controller;
+package com.org.Account_Management_System.Controller;
 
 import java.math.BigInteger;
 import java.util.UUID;
