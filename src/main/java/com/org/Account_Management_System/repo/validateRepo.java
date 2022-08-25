@@ -3,10 +3,10 @@ package com.org.Account_Management_System.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.org.Account_Management_System.dto.BankAccount;
+import com.org.Account_Management_System.dto.bankAccount;
 
 
-	public interface validateRepo extends JpaRepository<BankAccount,Integer> {
+	public interface validateRepo extends JpaRepository<bankAccount,Integer> {
 	    @Query("select ba from BankAccount ba where ba.account_number=?1")
-	     BankAccount validate(long account_number);
+	     bankAccount validate(long account_number);
 }

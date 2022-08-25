@@ -5,12 +5,12 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.org.Account_Management_System.dto.Customer;
-import com.org.Account_Management_System.repo.CustomerRepo;
+import com.org.Account_Management_System.repo.customerRepo;
 
 @Repository
-public class CustomerDao {
+public class customerDao {
 	 @Autowired
-	 CustomerRepo repo;
+	 customerRepo repo;
 	 public int findUserByPan(String pan) {
 		 Optional<Customer> user = repo.getByPan(pan);
 		 if(user.isPresent())

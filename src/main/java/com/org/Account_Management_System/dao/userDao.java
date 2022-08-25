@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.org.Account_Management_System.dto.User;
-import com.org.Account_Management_System.repo.UserRepo;
+import com.org.Account_Management_System.repo.userRepo;
 
 @Repository
-public class Userdao {
+public class userDao {
 	@Autowired
-	UserRepo repo;
+	userRepo repo;
 	public User saveUser(User user) {
 		return repo.save(user);
 	}

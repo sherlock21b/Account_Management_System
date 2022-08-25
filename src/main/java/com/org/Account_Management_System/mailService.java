@@ -7,12 +7,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 @Service
-public class Mail_service {
+public class mailService {
 
 	@Autowired
     private JavaMailSender mailSender;
 
-    public void sendSimpleEmail(Mail_dto dto) {
+    public void sendSimpleEmail(mailDto dto) {
         SimpleMailMessage message = new SimpleMailMessage();
 //        System.out.println(dto.reciepent+" recepient"+dto.Msg+" msg"+dto.sub+" sub");
         message.setFrom("banerjeeritik@gmail.com");

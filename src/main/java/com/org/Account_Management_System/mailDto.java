@@ -1,6 +1,6 @@
 package com.org.Account_Management_System;
 
-public class Mail_dto {
+public class mailDto {
 
 	public String reciepent;
 	public String Msg;

@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.org.Account_Management_System.dao.validateDao;
-import com.org.Account_Management_System.dto.BankAccount;
+import com.org.Account_Management_System.dto.bankAccount;
 
 @Service
-public class validate_service {
+public class validateService {
 	@Autowired
 	validateDao dao;
-	public BankAccount validate(long account_number) {
+	public bankAccount validate(long account_number) {
 		return dao.validate(account_number);
 	   }
 

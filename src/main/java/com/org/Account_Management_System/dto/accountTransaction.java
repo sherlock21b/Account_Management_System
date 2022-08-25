@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.util.*;
 
 @Entity
-public class account_transaction  {
+public class accountTransaction  {
 	
 	@Id
 	private int transaction_id;

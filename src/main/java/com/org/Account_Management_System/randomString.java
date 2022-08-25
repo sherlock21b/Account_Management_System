@@ -2,7 +2,7 @@ package com.org.Account_Management_System;
 
 import java.util.Random;
 
-public class RandomString {
+public class randomString {
 public static String getRandomString(int n) {
 	int leftLimit = 97; // letter 'a'
 	 int rightLimit = 122; // letter 'z'

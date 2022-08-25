@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.org.Account_Management_System.BCrypt;
-import com.org.Account_Management_System.dao.Userdao;
+import com.org.Account_Management_System.dao.userDao;
 import com.org.Account_Management_System.dto.User;
-import com.org.Account_Management_System.repo.UserRepo;
+import com.org.Account_Management_System.repo.userRepo;
 
 @Service
-public class UserServices {
+public class userServices {
 
 	@Autowired
-	Userdao dao;
+	userDao dao;
 	@Autowired
-	UserRepo userrepo;
+	userRepo userrepo;
 	
 	public boolean validateLogin (User data, int roleid) throws Exception{
 		int user_id = data.getUser();

@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class BankAccount {
+public class bankAccount {
 	@Id
 	private long account_number;
 	private int customer_id;

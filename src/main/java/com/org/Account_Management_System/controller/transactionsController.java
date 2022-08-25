@@ -14,38 +14,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.org.Account_Management_System.Mail_Controller;
-import com.org.Account_Management_System.Mail_dto;
-import com.org.Account_Management_System.dto.account_transaction;
-import com.org.Account_Management_System.repo.CustomerRepo;
-import com.org.Account_Management_System.service.Transactions_service;
+import com.org.Account_Management_System.mailController;
+import com.org.Account_Management_System.mailDto;
+import com.org.Account_Management_System.dto.accountTransaction;
+import com.org.Account_Management_System.repo.customerRepo;
+import com.org.Account_Management_System.service.transactionsService;
 
 
 @RestController
-public class Transactions_Controller {
+public class transactionsController {
 	@Autowired
-	Transactions_service service;
+	transactionsService service;
 	
 	@Autowired 
-	CustomerRepo repo;
+	customerRepo repo;
 	@Autowired
-	Mail_Controller mail;
+	mailController mail;
 	@GetMapping("/latest-transactions")
-	public List<account_transaction> showTransactions(@RequestParam("acc") int acc){
+	public List<accountTransaction> showTransactions(@RequestParam("acc") int acc){
 		return service.showTransactions(acc);
 	}
 	
 	@GetMapping("/get-statement")
-	public List<account_transaction> get_statement(@RequestParam("date1") String date1,@RequestParam("date2")String date2,@RequestParam("acc")int acc){
+	public List<accountTransaction> getStatement(@RequestParam("date1") String date1,@RequestParam("date2")String date2,@RequestParam("acc")int acc){
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate d1=LocalDate.parse(date1,formatter);
 		LocalDate d2=LocalDate.parse(date2,formatter);
-		return service.get_statement(d1, d2, acc);
+		return service.getStatement(d1, d2, acc);
 	}
 	
 
 	 @PostMapping("/account-transfer")
-	    public String transfer_amount(@RequestBody account_transaction ba) {
+	    public String transferAmount(@RequestBody accountTransaction ba) {
 	    try
 	    {
 		 	ba.setType("Debit");
@@ -55,8 +55,8 @@ public class Transactions_Controller {
 			ba.setTransaction_id(Integer.parseInt(lUUID));
 			String senderEmail=repo.findEmailByAccountNumber(ba.getAccount_number());
 			String receiverEmail=repo.findEmailByAccountNumber(ba.getTo_account());
-			service.transfer_amount(ba);
-			Mail_dto mailObject=new Mail_dto();
+			service.transferAmount(ba);
+			mailDto mailObject=new mailDto();
 			 mailObject.setReciepent(senderEmail);
 			 mailObject.setSub("Transaction Info ");
 			 mailObject.setMsg("Here are the Transaction Detials for Account Number: "+ ba.getAccount_number()+" of Amount "+ba.getAmount()+ " is Debited with the tansaction id as :"+ba.getTransaction_id());
@@ -74,13 +74,13 @@ public class Transactions_Controller {
 		    }
 	 }
 	 @PostMapping("/cash-transfer")
-	    public account_transaction save_transactions(@RequestBody account_transaction tran) {
+	    public accountTransaction saveTransactions(@RequestBody accountTransaction tran) {
 		 try {
 	        String lUUID = String.format("%06d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)).substring(0,6);
 		 	tran.setTime(LocalDateTime.now());
 		 	tran.setSub_type("Cash");
 	        tran.setTransaction_id(Integer.parseInt(lUUID));
-	        return service.save_transactions(tran);
+	        return service.saveTransactions(tran);
 		} catch(Exception e) {
 			System.out.println(e);
 			return null;

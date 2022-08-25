@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Mail_Controller {
+public class mailController {
 	@Autowired
-	Mail_service service;
+	mailService service;
 	@PostMapping("/send")
-	public void sendSimpleEmail(@RequestBody Mail_dto dto ) {
+	public void sendSimpleEmail(@RequestBody mailDto dto ) {
 		service.sendSimpleEmail(dto);
 		System.out.println("Done");
 		

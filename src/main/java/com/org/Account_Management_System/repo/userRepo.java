@@ -7,7 +7,7 @@ import com.org.Account_Management_System.dto.User;
 
 import java.util.List;
 
-public interface UserRepo extends JpaRepository<User, Integer>{
+public interface userRepo extends JpaRepository<User, Integer>{
 	@Query( value="select * from ams.user b where b.user_id=?",nativeQuery = true )
 	User findByUserId(int user_id);
 	

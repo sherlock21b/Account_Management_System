@@ -15,25 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.org.Account_Management_System.BCrypt;
-import com.org.Account_Management_System.Mail_Controller;
-import com.org.Account_Management_System.Mail_dto;
-import com.org.Account_Management_System.RandomString;
+import com.org.Account_Management_System.mailController;
+import com.org.Account_Management_System.mailDto;
+import com.org.Account_Management_System.randomString;
 import com.org.Account_Management_System.dto.Customer;
 import com.org.Account_Management_System.dto.User;
-import com.org.Account_Management_System.service.CustomerCreationServices;
-import com.org.Account_Management_System.service.UserServices;
+import com.org.Account_Management_System.service.customerCreationServices;
+import com.org.Account_Management_System.service.userServices;
+
 import java.io.File;
 
 @RestController
-public class AccountController {
+public class accountController {
 	@Autowired
-	CustomerCreationServices service;
+	customerCreationServices service;
 	
 	@Autowired
-	Mail_Controller mail;
+	mailController mail;
 	
 	@Autowired
-	UserServices user_service;
+	userServices user_service;
 	 @GetMapping("/search-pan/{pan}")
 	 public int findUserByPan(@PathVariable String pan) {
 		 // should be only done by bank manager --- Authorization 
@@ -45,14 +46,14 @@ public class AccountController {
 		 //move to service
 		 String lUUID = String.format("%06d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)).substring(0,6);
 		 customer.setCustomer(Integer.parseInt(lUUID));
-		 String  originalPassword = RandomString.getRandomString(8);
+		 String  originalPassword = randomString.getRandomString(8);
 		 String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));
 		 User user=new User();
 		 user.setUser(Integer.parseInt(lUUID));
 		 user.setPassword(generatedSecuredPasswordHash);
 		 user.setRole_id(2);
 		 user_service.saveUser(user);
-		 Mail_dto mailObject=new Mail_dto();
+		 mailDto mailObject=new mailDto();
 		 mailObject.setReciepent(customer.getEmail_id());
 		 mailObject.setSub("Welcome to the Bank");
 		 mailObject.setMsg("Here are the creditianls\n"+"Login Id: "+ customer.getCustomer_id()+"\n"+"Temp Password: "+ originalPassword);
