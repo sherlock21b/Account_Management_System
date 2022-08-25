@@ -7,6 +7,6 @@ import com.org.Account_Management_System.dto.bankAccount;
 
 
 	public interface validateRepo extends JpaRepository<bankAccount,Integer> {
-	    @Query("select ba from BankAccount ba where ba.account_number=?1")
+	    @Query("select ba from bankAccount ba where ba.account_number=?1")
 	     bankAccount validate(long account_number);
 }
